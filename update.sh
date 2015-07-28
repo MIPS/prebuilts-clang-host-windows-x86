@@ -13,6 +13,13 @@ for b in bin/*; do
   fi
 done
 
+# Copy static analyzer scripts.
+echo Copying static analyzer tools
+rm -rf tools/*
+mkdir -p tools
+cp -ar ${ANDROID_BUILD_TOP}/external/clang/tools/scan-build tools
+cp -ar ${ANDROID_BUILD_TOP}/external/clang/tools/scan-view tools
+
 # Copy header files
 rm -rf lib/clang/*/include/*
 for i in `find ${ANDROID_BUILD_TOP}/external/clang/lib/Headers -mindepth 1 ! -name \*.mk -a ! -name Makefile -a ! -name CMakeLists.txt`; do
